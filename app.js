@@ -2,8 +2,8 @@ const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
 const logger = require('morgan')
-
-const mainRouter = require('./routes/')
+const session = require('express-session')
+const mainRouter = require('./routes')
 
 const app = express()
 
@@ -19,6 +19,17 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(
+  session({
+    secret: 'bad boy',
+    key: 'cookie-app',
+    resave: true,
+    saveUninitialized: false,
+    ephemeral: true,
+    rolling: true,
+    cookie: { maxAge: 30 * 60 * 1000 },
+  })
+)
 
 app.use('/', mainRouter)
 

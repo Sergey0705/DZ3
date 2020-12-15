@@ -7,22 +7,16 @@ const db = low(adapter)
 
 const getSkills = () => db.getState().skills
 const getProducts = () => db.getState().products
-const saveSkills = ({ number }) =>
+const saveSkills = (skills) => db.set('skills', skills).write()
+const saveProducts = ({ dir, name, price }) =>
   db
-    .get('skills')
+    .get('products')
     .push({
-      number,
+      src: dir,
+      name,
+      price,
     })
     .write()
-const saveProducts = ({ src, name, price }) =>
-db
-  .get('products')
-  .push({
-    src,
-    name,
-    price
-  })
-  .write()
 
 module.exports = {
   getSkills,

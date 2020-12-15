@@ -1,19 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const bodyParser = require(`body-parser`)
-const login = require('../models//login.json')
+const login = require('../models/login.json')
 
-router.get('/login', (req, res, next) => {
+router.get('/', (req, res, next) => {
+  console.log('LOGIN')
   if (req.session.isAdmin) {
-    return res.redirect('/admin');
+    return res.redirect('/admin')
   }
   res.render('pages/login', { title: 'SigIn page' })
 })
 
-const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({extended: false})
-
-router.post('/login', jsonParser, urlencodedParser, (req, res, next) => {
+router.post('/', (req, res, next) => {
   const { email, password } = req.body
   if (email === login.email && password === login.password) {
     req.session.isAdmin = true
