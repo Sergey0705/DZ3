@@ -2,11 +2,11 @@
     "mail": {
       "subject": "Сообщение с сайта",
       "smtp": {
-        "host": "smtp.gmail.com",
+        "host": "smtp.g",
         "port": 465,
         "secure": true,
         "auth": {
-          "user": "loftschoolnodejs@gmail.com",
+          "user": "pavrun85@mail.ru",
           "pass": 12345
         }
       }

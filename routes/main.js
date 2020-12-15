@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log(process.env.SEND_GRID_API_KEY)
     sgMail.setApiKey(process.env.SEND_GRID_API_KEY)
     const msg = {
       to: config.mail.smtp.auth.user,
